@@ -1,13 +1,13 @@
 {% set name = "napari-guitils" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/napari_guitils-{{ version }}.tar.gz
-  sha256: 60e1bba02d45af39b9d43b680a8db3103eb6184c941204cb9a856efa7e6b2f52
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/napari_guitils-{{ version }}.tar.gz
+  sha256: ee1506106385cf9668cf9531ff63ef1094e90b39a86debdac2a6cb88a4bb8de7
 
 build:
   noarch: python
@@ -16,13 +16,14 @@ build:
 
 requirements:
   host:
-    - hatchling
-    - hatch-vcs
+    - python {{ python_min }}
+    - setuptools >=42.0.0
+    - wheel
+    - setuptools-scm
     - pip
-    - python >=3.8
   run:
     - natsort
-    - python >=3.8
+    - python >={{ python_min }}
     - qtpy
 
 test:
@@ -33,6 +34,8 @@ test:
     - pip check
   requires:
     - pip
+    - pyqt
+    - python {{ python_min }}
 
 about:
   home: https://pypi.org/project/napari-guitils
